@@ -1,0 +1,120 @@
+﻿
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <link rel="stylesheet" href="~/Register/css/style.css">
+
+    <script src="~/ValidateUser.js"></script>
+
+  
+</head>
+
+@*<body>*@
+   @* <head>*@
+       @* <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register</title>*@
+       @* <link rel="stylesheet" href="Register/css/normalize.css">*@
+       @* <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>*@
+       @* <link rel="stylesheet" href="Register/css/main.css">*@
+   @* </head>*@
+    <body>
+
+      <form  method="post" onsubmit="return UserValidate()">
+      
+        <h1>Register</h1>
+          
+        
+        <fieldset>
+          <!--<legend><span class="number">1</span>Your basic info</legend>-->
+          <label for="name">First name:</label>
+          
+             <input id="firstname" placeholder="First name" class="form-control" type="text"  name="fname" @*oninvalid="setCustomValidity('Please enter a valid First Name!')" onchange="try{setCustomValidity('')}catch(e){}" required=""*@>
+
+            @* <label id="fnamevalidation" style="visibility:hidden;float:right;color:red">Please enter First name</label>*@
+            <br />
+
+            <label for="name">Last name:</label>
+         @* <input type="text" id="ln" name="user_ln">*@
+             <input id="lastname" placeholder="Last name" class="form-control" type="text" name="lname" @*oninvalid="setCustomValidity('Please enter a valid Last Name!')" onchange="try{setCustomValidity('')}catch(e){}" required=""*@>
+            @*<label id="lnamevalidation" style="visibility:hidden;float:right;color:red">Please enter Last name</label>*@
+            <br />
+
+           
+            <label for="username">User name:</label>
+          
+             <input id="username" placeholder="User name" class="form-control" type="text" name="uname" @*oninvalid="setCustomValidity('Please enter a valid First Name!')" onchange="try{setCustomValidity('')}catch(e){}" required=""*@>
+            @*<label id="unamevalidation" style="visibility:hidden;float:right;color:red">Please enter User name</label>
+             <label id="unamelength" style="visibility:hidden;float:right;color:red">User name must be minimum 6 characters and maximum 20 characters</label><br />*@
+
+            
+              <br />
+                
+
+<label for="name">Password:</label>
+         <input id="password" name="password" type="password" @*pattern="^\S{6,}$"*@@* onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Password" required*@>
+ @*<label id="pwd1validation" style="visibility:hidden;float:right;color:red">Please enter Password</label>
+    <label id="pwdlength" style="visibility:hidden;float:right;color:red">Password must be minimum 6 characters and maximum 20 characters</label>
+             <label id="pwdformat" style="visibility:hidden;float:right;color:red">Password must include atleast one letter,number and special character</label>*@
+<br />
+
+<label for="name">Confirm Password:</label>
+<input id="password_two" name="password_two" type="password" @*pattern="^\S{6,}$"*@ @*onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" placeholder="Verify Password" required*@>
+  
+  @*          <label id="pwd2validation" style="visibility:hidden;float:right;color:red">Please enter Confirm Password </label>
+ <label id="pwdcomparevalidation" style="visibility:hidden;float:right;color:red">Password missmatch</label>*@
+    <br />
+        <label>Gender:</label>
+        <input type="radio" name="radiochoice"  id="female" value="female">Female</input>
+        <input type="radio" name="radiochoice" id="male" value="male">Male</input> 
+         <input type="radio" name="radiochoice" id="others" value="others">Others</input> 
+       @* <label id="gendervalidation" style="visibility:hidden;float:right;color:red">Please enter Gender</label>*@
+
+   
+  <br />
+    
+          
+            
+            <label for="mail">Email:</label>
+         @* <input type="email" id="mail" name="user_email">*@
+
+   <input id="emailInput" placeholder="email address" class="form-control" type="text" name="email">
+
+
+
+            <label for="Phone number">Phone number:</label>
+          
+             <input id="phoneno" placeholder="Phone Number" class="form-control" type="text" name="phno" @*oninvalid="setCustomValidity('Please enter a valid Phone number!')" onchange="try{setCustomValidity('')}catch(e){}" required=""*@>
+       @* <label id="phnovalidation" style="visibility:hidden;float:right;color:red">Please enter Phone Number</label>
+             <label id="phvalidation" style="visibility:hidden;float:right;color:red">Please enter valid Phone Number</label>*@
+        
+        <button type="submit" name="r">submit</button>
+            <br>    <button type="reset" value="Reset" >Reset</button><br />
+            
+         <a href="login">Already have an account?? </a><br />
+            <label id="validation" style="visibility:hidden;float:right;color:red"></label>
+
+
+
+        @if (IsPost)
+        {
+            @ViewBag.Message
+        }
+                
+      </form>
+
+        
+         
+      
+    </body>
+</html>
+  
+  
+</body>
+</html>

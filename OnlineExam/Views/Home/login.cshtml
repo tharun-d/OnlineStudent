@@ -1,0 +1,91 @@
+﻿
+<!DOCTYPE html>
+<html >
+<head>
+       <script>
+           //document.oncontextmenu = document.body.oncontextmenu = function () { return false; }
+
+
+           //history.pushState(null, null, 'no-back-button');
+           //window.addEventListener('popstate', function (event) {
+           //    history.pushState(null, null, 'no-back-button');
+           //});
+
+           history.pushState(null, document.title, location.href);
+           window.addEventListener('popstate', function (event) {
+               history.pushState(null, document.title, location.href);
+           });
+
+
+    </script>
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+
+      <link rel="stylesheet" href="~/login/css/style.css">
+
+    @*<style>
+        #login {
+            padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+            padding-bottom: 50px;
+            text-align: center;
+            color: #f8f8f8;
+             background: url(../img/login.png) no-repeat center center;
+            background-size: cover;
+        }
+        
+    </style>*@
+  
+</head>
+
+<body background="~/img/login.png">
+    
+   
+<!-- Form Mixin-->
+<!-- Input Mixin-->
+<!-- Button Mixin-->
+<!-- Pen Title-->
+<div class="pen-title">
+  <h1>Login Form</h1>
+</div>
+<div class="module form-module">
+  <div class="toggle">
+    
+  </div>
+  <div class="form" id="login">
+      
+    <h2>Login to your account</h2>
+    <form method="post">
+        
+     <input id="username" name="uname" placeholder="username" class="form-control" type="text" >
+
+      
+        <input id="password"  name="pwd" placeholder="Password" class="form-control" type="password" >
+
+      <br><button type="submit" name="l">Login</button></br>
+        <br /> <button type="reset" value="Reset" >Reset</button><br />
+
+        @if (IsPost)
+        {
+            @ViewBag.Message
+        }
+    </form>
+  </div>
+ 
+  <div class="cta">@*<a href="~/Home/ResetPage"></a> Forgot your password?</></div>*@ <div>
+        <form method="post">
+            @*<a href="~/ForgotPassword">Forgot your password?? </a> &nbsp*@<a href="~/Home/ForgotPassword">Forgot your password?</a>
+            <a href="Register">New user register?? </a>
+        </form></div>
+</div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+    <script src="~/login/js/index.js"></script>
+
+</body>
+</html>

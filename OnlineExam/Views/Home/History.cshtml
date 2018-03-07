@@ -1,0 +1,111 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+   <script>
+       
+       history.pushState(null, document.title, location.href);
+       window.addEventListener('popstate', function (event) {
+           history.pushState(null, document.title, location.href);
+       });
+
+
+    </script>
+    <meta name="viewport" content="width=device-width" />
+    <title>History</title>
+
+     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    
+    <link href="~/css/landing-page.css" rel="stylesheet" />
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <br />
+              
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        
+                        <a href="UserProfile">Profile</a>
+                    </li>
+                    <li>
+                        <a href="TakeTest">TakeTest</a>
+
+                    </li>
+                    <li>
+                        <a href="History">History</a>
+                    </li>
+                    <li>
+                        <a href="Logout">Logout</a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav><br />
+    <br />
+    <br />
+
+    <div>
+        <center>
+     <table border="1">
+                    <tr>
+                    <th>Subject Name name&nbsp</th>
+                    <th>Exam Date&nbsp </th>
+                    <th>Percentage&nbsp</th> 
+                    <th>Status Of Exam&nbsp</th>
+                        
+                        </tr>
+                    @foreach (var item in ViewBag.List)
+                    {
+                        <tr>
+                          <td > @item.SubjectName </td>
+                            
+                            <td > @item.Examdate </td>
+
+                            <td> @item.Percantage </td>
+
+                            <td> @item.StatusOfExam </td>
+                            </tr>
+                    }
+          
+                
+                     </table> 
+
+                        <br />
+                   <input type="button" 
+   onClick="window.print()" 
+   value="Print Your Report"/>
+            </center>
+    </div>
+</body>
+</html>

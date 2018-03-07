@@ -1,0 +1,174 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Questions</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Disable cut copy paste
+            $('html').bind('cut copy paste', function (e) {
+                e.preventDefault();
+            });
+
+            //Disable mouse right click
+            $("html").on("contextmenu", function (e) {
+                return false;
+            });
+        });
+      
+    
+</script>
+    <script>
+
+        history.pushState(null, document.title, location.href);
+        window.addEventListener('popstate', function (event) {
+            history.pushState(null, document.title, location.href);
+        });
+
+        window.setInterval(function () {
+            var time = document.getElementById("secs").innerHTML;
+            if (time > 0) {
+                time -= 1;
+            } else {
+                //alert("times up!");
+                document.getElementById("one").submit();
+                // or whatever you want
+            }
+            document.getElementById("secs").innerHTML = time;
+        }, 1000);
+    </script>
+
+    <style type="text/css">
+        .grey {
+            background-color: grey;
+        }
+
+        .approved {
+            background-color: green;
+        }
+
+        .rejected {
+            background-color: red;
+        }
+
+        .pending {
+            background-color: lime;
+        }
+        .tablecolor{
+            background-color:lightskyblue;
+        }
+        .headingcolor{
+            background-color:blue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form method="post" id="one">
+        
+            @if (!IsPost)
+            {
+                <p>Time left in seconds</p>       
+                <div id="secs">120</div>
+                int i = 1; 
+                <input type="hidden" value=@ViewBag.SubjectName name="SubjectName"/>
+                foreach (var item in ViewBag.RandomQuestions)
+                {        
+          <h3>@i @item.question</h3>
+                    string q = item.question;
+                    string op1 = item.option1;
+                    string op2 = item.option2;
+                    string op3 = item.option3;
+                    string op4 = item.option4;
+                    @Html.Hidden("que" +i, q)
+
+                  @Html.RadioButton("arr" + i, "1")@item.option1
+                    @Html.Hidden("que1"+i,op1)
+                   @Html.RadioButton("arr" + i, "2")@item.option2
+                    @Html.Hidden("que2"+i,op2)
+                   @Html.RadioButton("arr" + i, "3")@item.option3
+                    @Html.Hidden("que3"+i,op3)
+                  @Html.RadioButton("arr" + i, "4")@item.option4
+                    @Html.Hidden("que4"+i,op4)
+                    int a = item.crt;
+                    @Html.Hidden("crt" + i, a)      
+                @*<input type="text" name=i value="10" />*@
+                <br />
+                    i++;
+                }
+                @Html.Hidden("tques",i)
+            <br /><br />
+            <input type="submit" />   
+            }
+          @if (IsPost)
+          {
+               <center>         
+<table border="1" >
+    <tr class="headingcolor">
+        <th>Number of correct answers</th>
+        <th>Number of wrong answers</th>
+        <th>Percentage</th>
+    </tr>
+              <tr class="tablecolor">           
+              <td> @ViewBag.correct</td>
+              <td> @ViewBag.wrong</td>
+              <td> @ViewBag.percentage</td>
+         </tr>
+               </table>
+                   </center>
+                   <br />
+              int i = 1;
+                 <table> <tr><td> 
+                     
+                   @foreach (var item in ViewBag.questiondisplay)
+                   {
+
+
+                   <h4>@i @item.question</h4>
+
+                   @Html.RadioButton("arr" + i, "1")@item.option1
+                   @Html.RadioButton("arr" + i, "2")@item.option2
+                   @Html.RadioButton("arr" + i, "3")@item.option3
+                   @Html.RadioButton("arr" + i, "4")@item.option4
+                   int a = item.crt;
+                       @Html.Hidden("crt" + i, a)
+
+                       <br />
+                       i++;
+                   }
+                    </td>
+                     <td>
+       <table border="1">
+         <tr class="headingcolor">
+              <th>your answer </th>
+              <th>Correct answer</th>
+         </tr>                     
+             @foreach (var item in ViewBag.correctanswers)
+             {
+             <tr class="tablecolor">
+              <td> @item.option1</td>
+              <td> @item.option2</td>
+                 </tr>
+             }     
+          </table><br /></td>
+                          </table>            
+                          <center>
+                   <input type="button" 
+   onClick="window.print()" 
+   value="Print Your Report"/><br />
+
+                   <a href="UserPage">Go back to User Page</a>
+      
+              </center>
+          }      
+            </form>
+    </div>
+</body>
+</html>
